@@ -1,0 +1,38 @@
+{
+  "groups": [
+    {
+      "name": "app.authorization.header",
+      "type": "com.example.toeic.configuration.properties.AuthenticationHeaderConfiguration",
+      "sourceType": "com.example.toeic.configuration.properties.AuthenticationHeaderConfiguration"
+    },
+    {
+      "name": "app.jwt-token",
+      "type": "com.example.toeic.configuration.properties.JwtTokenConfiguration",
+      "sourceType": "com.example.toeic.configuration.properties.JwtTokenConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.authorization.header.name",
+      "type": "java.lang.String",
+      "sourceType": "com.example.toeic.configuration.properties.AuthenticationHeaderConfiguration"
+    },
+    {
+      "name": "app.authorization.header.prefix",
+      "type": "java.lang.String",
+      "sourceType": "com.example.toeic.configuration.properties.AuthenticationHeaderConfiguration"
+    },
+    {
+      "name": "app.jwt-token.expiration",
+      "type": "java.lang.Long",
+      "sourceType": "com.example.toeic.configuration.properties.JwtTokenConfiguration",
+      "defaultValue": 0
+    },
+    {
+      "name": "app.jwt-token.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.example.toeic.configuration.properties.JwtTokenConfiguration"
+    }
+  ],
+  "hints": []
+}

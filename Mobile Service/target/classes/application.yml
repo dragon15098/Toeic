@@ -1,0 +1,22 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: "jdbc:mysql://localhost:3306/toeic"
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+elasticsearch:
+  host: localhost
+  port: 9300
+  clustername: "elasticsearch"
+
+app:
+  authorization:
+    header:
+      name: Authorization
+      prefix: Bearer
+  jwt-token:
+    tokenSecret: Toeic
+    expiration: 604800000

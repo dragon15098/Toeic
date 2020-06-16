@@ -11,7 +11,6 @@ import com.example.toeic.data.network.Service;
 import io.reactivex.observers.DisposableSingleObserver;
 
 public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresenter {
-    private LoginView loginView;
 
     @Override
     public void onClickButtonLogin(String username, String password) {
@@ -37,7 +36,7 @@ public class LoginPresenterImpl extends BasePresenterImpl implements LoginPresen
 
     private void loginSuccess(LoginResponse loginResponse) {
         HttpHelper.initRetrofit(loginResponse.accessToken);
-        loginView = (LoginView) view;
+        LoginView loginView = (LoginView) view;
         loginView.loginSuccess();
     }
 }

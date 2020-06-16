@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import com.example.toeic.data.UserService;
+import com.example.toeic.service.impl.UserDetailsServiceImpl;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -21,12 +21,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserService userService;
+    private final UserDetailsServiceImpl userDetailsServiceImpl;
     private final ObjectMapper objectMapper;
     private final JwtTokenProvider tokenProvider;
 
-    public WebSecurityConfig(UserService userService, ObjectMapper objectMapper, JwtTokenProvider tokenProvider) {
-        this.userService = userService;
+    public WebSecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl, ObjectMapper objectMapper, JwtTokenProvider tokenProvider) {
+        this.userDetailsServiceImpl = userDetailsServiceImpl;
         this.objectMapper = objectMapper;
         this.tokenProvider = tokenProvider;
     }
@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.userDetailsService(userService) // Cung cáp userservice cho spring security
+        auth.userDetailsService(userDetailsServiceImpl) // Cung cáp userservice cho spring security
                 .passwordEncoder(passwordEncoder()); // cung cấp password encoder
     }
 
@@ -66,6 +66,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/user/insert").permitAll()
+                .antMatchers("/api/file/**").permitAll()
                 .anyRequest().authenticated(); // Tất cả các request khác đều cần phải xác thực mới được truy cập
 
         // Thêm một lớp Filter kiểm tra jwt

@@ -1,38 +1,11 @@
-package com.example.toeic.data;
+package com.example.toeic.service;
 
-import com.example.toeic.model.User;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import com.example.toeic.repository.UserRepository;
+import com.example.toeic.model.dto.UserDTO;
+import com.example.toeic.model.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Service
-@RequiredArgsConstructor
-public class UserService implements UserDetailsService {
-
-    private final UserRepository userRepository;
-
-    @Override
-    public UserDetails loadUserByUsername(String username) {
-        // Kiểm tra xem user có tồn tại trong database không?
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        return user;
-    }
-
-    // JWTAuthenticationFilter sẽ sử dụng hàm này
-    @Transactional
-    public UserDetails loadUserById(Long id) {
-
-        return userRepository.findById(id).orElseThrow(
-                () -> new UsernameNotFoundException("User not found with id : " + id)
-        );
-    }
-
+public interface UserService {
+    User createUser(UserDTO userDTO);
 
 }

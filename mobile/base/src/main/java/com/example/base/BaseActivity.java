@@ -9,6 +9,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import butterknife.ButterKnife;
+
 public abstract class BaseActivity extends Activity implements BaseView {
 
     @Override

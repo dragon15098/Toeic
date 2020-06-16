@@ -2,7 +2,7 @@ package com.example.toeic.configuration.filters;
 
 import com.example.toeic.configuration.properties.AuthenticationHeaderConfiguration;
 import com.example.toeic.configuration.properties.JwtTokenConfiguration;
-import com.example.toeic.model.User;
+import com.example.toeic.model.user.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;

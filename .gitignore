@@ -2,3 +2,9 @@ Mobile Service/.idea/
 mobile/.idea/
 Service/.idea/
 Service/mp3/
+Mobile Service/target/
+mobile/.gradle/
+
+*.class
+*.mp3
+*.png

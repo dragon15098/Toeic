@@ -1,5 +1,6 @@
 package com.example.base;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.StringRes;
 
 public interface BaseView {

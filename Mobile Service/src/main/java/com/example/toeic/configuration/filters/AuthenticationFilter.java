@@ -1,8 +1,8 @@
 package com.example.toeic.configuration.filters;
 
-import com.example.toeic.model.LoginRequest;
-import com.example.toeic.model.LoginResponse;
-import com.example.toeic.model.User;
+import com.example.toeic.model.user.LoginRequest;
+import com.example.toeic.model.user.LoginResponse;
+import com.example.toeic.model.user.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

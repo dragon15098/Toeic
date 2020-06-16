@@ -13,4 +13,33 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <!--    PART_NAME-->
+    <string name="part_one">Photo</string>
+    <string name="part_two">Question-Response</string>
+    <string name="part_three">Short conversation</string>
+    <string name="part_four">Short talk</string>
+    <string name="part_five">Incomplete Sentences</string>
+    <string name="part_six">Text Completion</string>
+    <string name="part_seven">Reading</string>
+
+    <!--    IMAGE -->
+    <string name="image_part_one">Image part one</string>
+
+    <!-- ANSWER -->
+    <string name="A">A.</string>
+    <string name="B">B.</string>
+    <string name="C">C.</string>
+    <string name="D">D.</string>
+
+    <!-- MP3 CONTROL -->
+    <string name="play_mp3">Play mp3</string>
+    <string name="pause">Pause</string>
+
+    <!-- BUTTON -->
+    <string name="submit">Submit</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+
+
 </resources>

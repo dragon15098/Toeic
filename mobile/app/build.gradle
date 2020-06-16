@@ -5,10 +5,11 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.toeic"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -37,8 +38,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation project(path: ':base')
 
+    //butterknife 
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.1'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
@@ -50,4 +53,19 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.6.0")
+
+    //lombok
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    // multi_dex
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    //image
+    implementation 'com.yanzhenjie:album:2.1.3'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    // html view
+    implementation 'org.sufficientlysecure:html-textview:3.9'
 }

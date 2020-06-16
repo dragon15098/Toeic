@@ -15,6 +15,7 @@ import com.example.base.BaseFragment;
 import com.example.toeic.R;
 import com.example.toeic.R2;
 import com.example.toeic.data.model.Part;
+import com.example.toeic.feature.exam.part_four.PartFourActivity;
 import com.example.toeic.feature.exam.part_one.PartOneActivity;
 import com.example.toeic.feature.exam.part_three.PartThreeActivity;
 import com.example.toeic.feature.exam.part_two.PartTwoActivity;
@@ -86,7 +87,8 @@ public class ExamFragment extends BaseFragment implements ClickCallBack {
 
 
     private void startPartFourActivity() {
-
+        Intent intent = new Intent(getActivity(), PartFourActivity.class);
+        startActivity(intent);
     }
 
     private void startPartFiveActivity() {

@@ -30,6 +30,7 @@
         <activity android:name=".feature.exam.part_two_exam.PartTwoExamActivity" />
         <activity android:name=".feature.exam.part_three.PartThreeActivity" />
         <activity android:name=".feature.exam.part_three_exam.PartThreeExamActivity" />
+        <activity android:name=".feature.exam.part_four.PartFourActivity" />
     </application>
 
 </manifest>

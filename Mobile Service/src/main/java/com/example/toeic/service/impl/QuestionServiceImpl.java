@@ -91,6 +91,7 @@ public class QuestionServiceImpl implements QuestionService {
             groupQuestion.getQuestions().forEach(question -> {
                 question.setExamId(exam1.getId());
                 question.setPartId(3);
+                question.setGroupQuestion(groupQuestion);
 //                GroupQuestion groupQuestion1 = new GroupQuestion();
 //                groupQuestion1.setId(groupQuestion.getId());
 //                question.setGroupQuestion(groupQuestion1);
@@ -110,6 +111,7 @@ public class QuestionServiceImpl implements QuestionService {
             groupQuestion.getQuestions().forEach(question -> {
                 question.setExamId(exam1.getId());
                 question.setPartId(4);
+                question.setGroupQuestion(groupQuestion);
 //                GroupQuestion groupQuestion1 = new GroupQuestion();
 //                groupQuestion1.setId(groupQuestion.getId());
 //                question.setGroupQuestion(groupQuestion1);
@@ -142,6 +144,7 @@ public class QuestionServiceImpl implements QuestionService {
             groupQuestion.getQuestions().forEach(question -> {
                 question.setExamId(exam1.getId());
                 question.setPartId(6);
+                question.setGroupQuestion(groupQuestion);
 //                GroupQuestion groupQuestion1 = new GroupQuestion();
 //                groupQuestion1.setId(groupQuestion.getId());
 //                question.setGroupQuestion(groupQuestion1);

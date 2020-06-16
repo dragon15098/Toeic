@@ -11,7 +11,6 @@ INSERT INTO `toeic`.`user` (`username`, `password`) VALUES ('admin', '$2a$10$11e
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`));
-  INSERT INTO `toeic`.`exam` (`id`, `name`) VALUES ('1', 'De 1');
 
 
 CREATE TABLE `toeic`.`part` (

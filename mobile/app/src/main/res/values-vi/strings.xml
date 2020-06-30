@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Toeic</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+
+    <!--    PART_NAME-->
+    <string name="part_one">Hình ảnh</string>
+    <string name="part_two">Hỏi đáp</string>
+    <string name="part_three">Hội thoại ngắn</string>
+    <string name="part_four">Độc thoại</string>
+    <string name="part_five">Hoàn thành câu</string>
+    <string name="part_six">Hoàn thành đoạn văn</string>
+    <string name="part_seven">Đọc trả lời câu hỏi</string>
+
+    <!--    IMAGE -->
+    <string name="image_part_one">Ảnh phần 1</string>
+
+    <!-- ANSWER -->
+    <string name="A">A.</string>
+    <string name="B">B.</string>
+    <string name="C">C.</string>
+    <string name="D">D.</string>
+
+    <!-- MP3 CONTROL -->
+    <string name="play_mp3">Phát</string>
+    <string name="pause">Dừng</string>
+
+    <!-- BUTTON -->
+    <string name="submit">Nộp bài</string>
+    <string name="next">Tiếp</string>
+    <string name="back">Trước</string>
+    <string name="image">Ảnh</string>
+    <string name="finish">Hoàn thành</string>
+    <string name="login">Đăng nhập</string>
+    <string name="register">Đăng ký</string>
+
+    <!-- RESULT -->
+    <string name="result">%1$d</string>
+    <string name="old_result">Điểm lần trước</string>
+    <string name="current_result">Điểm hiện tại</string>
+    <string name="correct">Đúng</string>
+    <string name="wrong">Sai</string>
+    <string name="correct_number">Đúng %1$d câu </string>
+    <string name="wrong_number">Sai %1$d câu</string>
+    <string name="compare_results">So sánh kết quả lần thi trước</string>
+
+    <!-- LABEL -->
+    <string name="password">Mật khẩu</string>
+    <string name="confirmPassword">Xác nhận mật khẩu</string>
+    <string name="username">Tài khoản</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="word_not_found">Không tìm thấy từ cần tìm</string>
+    <string name="word_mean">Nghĩa của từ</string>
+    <!-- TIME -->
+    <string name="end_time">00:00:00</string>
+
+    <!-- TOAST -->
+    <string name="register_success">Tạo tài khoản thành công</string>
+    <string name="confirm_password_not_match">Nhập lại mật khẩu không khớp</string>
+
+    <!-- MENU -->
+    <string name="do_exam">Luyện từng phần</string>
+    <string name="do_test">Làm test</string>
+    <string name="search_word">Tìm từ</string>
+
+    <!-- EXAM -->
+    <string name="exam_list">Danh sách đề thi</string>
+</resources>

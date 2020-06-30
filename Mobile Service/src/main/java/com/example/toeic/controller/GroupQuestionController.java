@@ -37,4 +37,9 @@ public class GroupQuestionController {
     public ResponseEntity<List<GroupQuestion>> findQuestionPartSixByExamId(@PathVariable("id") Integer examId) {
         return ResponseEntity.ok(groupQuestionService.findByPartAndExams(Part.PartIndex.PART_SIX.getValue(), examId));
     }
+
+    @GetMapping("/findPartSevenByExamId/{id}")
+    public ResponseEntity<List<GroupQuestion>> findPartSevenByExamId(@PathVariable("id") Integer examId) {
+        return ResponseEntity.ok(groupQuestionService.findByPartAndExams(Part.PartIndex.PART_SEVEN.getValue(), examId));
+    }
 }

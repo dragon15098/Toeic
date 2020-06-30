@@ -7,5 +7,4 @@ import com.example.toeic.model.exam.Exam;
 import java.util.List;
 
 public interface ExamRepository extends JpaRepository<Exam, Integer>, JpaSpecificationExecutor<Exam> {
-
 }

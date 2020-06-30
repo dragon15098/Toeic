@@ -1,17 +1,19 @@
 package com.example.toeic.feature.home;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.toeic.R;
-import com.example.toeic.feature.exam.exam_main.ExamFragment;
+import com.example.toeic.feature.exam.exam_list.ExamFragment;
+import com.example.toeic.feature.practice.part_list.PartFragment;
+import com.example.toeic.feature.search_word.SearchWordFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -50,22 +52,33 @@ public class HomeActivity extends AppCompatActivity {
     private void openFragment(int menuId) {
         switch (menuId) {
             case R.id.nav_home:
-                changeExamFragment();
+                changePartFragment();
                 break;
             case R.id.nav_gallery:
-                changeExamFragment();
+                changeExamsFragment();
                 break;
             case R.id.nav_slideshow:
-                changeExamFragment();
+                changeSearchWordFragment();
                 break;
-
         }
     }
 
-    private void changeExamFragment() {
-        ExamFragment fragment = new ExamFragment();
+    private void changePartFragment() {
+        changeFragment(new PartFragment());
+    }
+
+    private void changeExamsFragment() {
+        changeFragment(new ExamFragment());
+    }
+
+    private void changeSearchWordFragment() {
+        changeFragment(new SearchWordFragment());
+    }
+
+    private void changeFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.layout_fragment, fragment);
         fragmentTransaction.commit();
     }
+
 }

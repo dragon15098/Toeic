@@ -9,6 +9,9 @@ import androidx.core.content.res.ResourcesCompat;
 import com.example.toeic.R;
 import com.example.toeic.config.ApplicationConfig;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +21,15 @@ import lombok.Setter;
 @Setter
 @Builder
 public class Part {
+    public static final List<Integer> partQuestionSize = new ArrayList<Integer>() {{
+        add(6);
+        add(25);
+        add(39);
+        add(30);
+        add(30);
+        add(16);
+        add(54);
+    }};
 
     public enum PartName {
         PART_ONE(R.string.part_one),

@@ -1,6 +1,7 @@
 package com.example.toeic.service.impl;
 
 import com.example.toeic.model.dto.UserDTO;
+import com.example.toeic.model.exception.UserExitsException;
 import com.example.toeic.model.user.User;
 import com.example.toeic.repository.UserRepository;
 import com.example.toeic.service.UserService;
@@ -17,14 +18,15 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public User createUser(UserDTO userDTO) {
+    public void createUser(UserDTO userDTO) throws UserExitsException {
         User user = userRepository.findByUsername(userDTO.getUsername());
         if (user == null) {
             User newUser = new User();
             newUser.setUsername(userDTO.getUsername());
             newUser.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-            return userRepository.save(newUser);
+            userRepository.save(newUser);
+            return;
         }
-        return null;
+        throw new UserExitsException();
     }
 }

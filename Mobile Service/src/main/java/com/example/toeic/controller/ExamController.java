@@ -25,4 +25,9 @@ public class ExamController {
         return ResponseEntity.ok(examService.findAll());
     }
 
+    @GetMapping("/getAllCorrectAnswer/{id}")
+    public ResponseEntity<List<Integer>> getAllCorrectAnswer(@PathVariable Integer id) {
+        return ResponseEntity.ok(examService.getAllCorrectAnswer(id));
+    }
+
 }

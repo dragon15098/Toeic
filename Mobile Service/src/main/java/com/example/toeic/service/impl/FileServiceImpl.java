@@ -24,7 +24,8 @@ public class FileServiceImpl implements FileService {
 
     @Autowired
     public FileServiceImpl() {
-        this.fileStorageLocation = Paths.get("..\\Service\\").toAbsolutePath().normalize();
+        this.fileStorageLocation = Paths.get("..\\..\\Service\\").toAbsolutePath().normalize();
+        System.out.println(this.fileStorageLocation);
         try {
             Files.createDirectories(this.fileStorageLocation);
         } catch (Exception ignored) {

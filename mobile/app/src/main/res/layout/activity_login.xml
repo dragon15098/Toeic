@@ -4,25 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="100dp">
+    android:paddingTop="50dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/dang_nhap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Đăng nhập"
-            android:textSize="50sp"
-            tools:layout_editor_absoluteX="73dp"
-            tools:layout_editor_absoluteY="256dp" />
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/unnamed" />
     </LinearLayout>
 
@@ -37,7 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Tên đăng nhập"
+            android:text="@string/username"
             android:textSize="20sp" />
 
         <EditText
@@ -57,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Mật khẩu"
+            android:text="@string/password"
             android:textSize="20sp" />
 
         <EditText
@@ -73,16 +65,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="40dp">
+        android:padding="20dp">
+
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="@string/register" />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:padding="5dp"
-            android:text="Đăng nhập" />
-
+            android:padding="10dp"
+            android:text="@string/login" />
     </LinearLayout>
 
 </LinearLayout>

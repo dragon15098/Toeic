@@ -17,6 +17,14 @@ public class Main {
             e.printStackTrace();
         }
     }
+//    public static void main(String[] args) {
+//        Clone clone = new Clone();
+//        try {
+//            clone.startClone();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }

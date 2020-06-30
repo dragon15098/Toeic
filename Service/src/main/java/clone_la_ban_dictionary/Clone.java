@@ -44,21 +44,21 @@ public class Clone {
 
     public void startClone() throws IOException {
         System.out.println("=====================READ WORD CLONED=====================");
-        readLastWord();
+        //readLastWord();
         System.out.println("=====================START CLONE=====================");
         System.out.println(nearWords.size());
         for (int i = 0; i <= 'z' - 'a'; i++) {
             for (int j = 0; j <= 'z' - 'a'; j++) {
-                getSuggestion(((char) ('z' - i)) + "" + (char) ('z' -j));
+                getSuggestion(((char) ('z' - i)) + "" + (char) ('z' - j));
             }
         }
-//        for (int i = 0; i <= 'z' - 'a'; i++) {
-//            for (int j = 0; j <= 'z' - 'a'; j++) {
-//                for (int z = 0; z <= 'z' - 'a'; z++) {
-//                    getSuggestion(((char) (i + 'a')) + "" + (char) (j + 'a') + "" + (char) (z + 'a'));
-//                }
-//            }
-//        }
+        for (int i = 0; i <= 'z' - 'a'; i++) {
+            for (int j = 0; j <= 'z' - 'a'; j++) {
+                for (int z = 0; z <= 'z' - 'a'; z++) {
+                    getSuggestion(((char) (i + 'a')) + "" + (char) (j + 'a') + "" + (char) (z + 'a'));
+                }
+            }
+        }
         System.out.println("=====================CLONE SUCCESS=====================");
     }
 
@@ -129,7 +129,6 @@ public class Clone {
     }
 
     private void writeToTempFile(Word word) throws IOException {
-
         File file = new File("word/word_temp.txt");
         FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -162,19 +161,23 @@ public class Clone {
         Element element = document.select("span.color-orange").first();
         if (element != null) {
             word.us = element.text();
-            getLinkMp3(fixSpace(word.word), "us");
+            getLinkMp3(word, fixSpace(word.word), "us");
         }
     }
 
-    private void getLinkMp3(String word, String sk) throws IOException {
-        HttpGet httpGet = new HttpGet("https://dict.laban.vn/ajax/getsound?accent=" + sk + "&word=" + word);
+    private void getLinkMp3(Word word, String url, String sk) throws IOException {
+        HttpGet httpGet = new HttpGet("https://dict.laban.vn/ajax/getsound?accent=" + sk + "&word=" + url);
         HttpClient client = HttpClients.createDefault();
         HttpResponse httpResponse = client.execute(httpGet);
         String content = IOUtils.toString(httpResponse.getEntity().getContent(), "UTF-8");
         Gson gson = new Gson();
         MediaResponse mediaResponse = gson.fromJson(content, MediaResponse.class);
         if (mediaResponse.data != null && !"".equals(mediaResponse.data)) {
-            cloneMP3(sk, word, mediaResponse.data);
+            if (sk.equals("us")) {
+                word.usMp3 = cloneMP3(sk, url, mediaResponse.data);
+            } else {
+                word.ukMp3 = cloneMP3(sk, url, mediaResponse.data);
+            }
         }
     }
 
@@ -182,7 +185,7 @@ public class Clone {
         Element element = document.select("span.color-black").first();
         if (element != null) {
             word.uk = element.text();
-            getLinkMp3(fixSpace(word.word), "uk");
+            getLinkMp3(word, fixSpace(word.word), "uk");
         }
     }
 
@@ -197,177 +200,15 @@ public class Clone {
 
     private Word readWord(Element firstDiv) {
         Word word = new Word();
-        Element element = firstDiv.children().first();
-        boolean inPhrase = false;
-        while (element != null) {
-            if (isMean(element)) {
-                inPhrase = false;
-                TypeWord typeWord = getLastTypeWord(word);
-                if (typeWord.means == null) {
-                    List<Mean> means = new ArrayList<Mean>();
-                    means.add(getMean(element));
-                    typeWord.means = means;
-                } else {
-                    typeWord.means.add(getMean(element));
-                }
-
-            } else if (isExample(element)) {
-                TypeWord typeWord = getLastTypeWord(word);
-                if (!inPhrase) {
-                    Mean mean = typeWord.means.get(typeWord.means.size() - 1);
-                    if (mean.examples == null) {
-                        List<Example> examples = new ArrayList<Example>();
-                        examples.add(getExample(element));
-                        mean.examples = examples;
-                    } else {
-                        mean.examples.add(getExample(element));
-                    }
-                } else {
-                    Phrase phrase = typeWord.phrases.get(typeWord.phrases.size() - 1);
-                    if (phrase.examples == null) {
-                        List<Example> examples = new ArrayList<Example>();
-                        examples.add(getExample(element));
-                        phrase.examples = examples;
-                    } else {
-                        phrase.examples.add(getExample(element));
-                    }
-
-                }
-            } else if (isPhrase(element)) {
-                inPhrase = true;
-                TypeWord typeWord = getLastTypeWord(word);
-                if (typeWord.phrases == null) {
-                    List<Phrase> phrases = new ArrayList<Phrase>();
-                    phrases.add(getPhrase(element));
-                    typeWord.phrases = phrases;
-                } else {
-                    typeWord.phrases.add(getPhrase(element));
-                }
-            } else if (isNote(element)) {
-                TypeWord typeWord = getLastTypeWord(word);
-                Phrase phrase = typeWord.phrases.get(typeWord.phrases.size() - 1);
-                if (phrase != null) {
-                    phrase.note = getNote(element);
-                }
-            } else if (isPhraseMean(element)) {
-                TypeWord typeWord = getLastTypeWord(word);
-                Phrase phrase = typeWord.phrases.get(typeWord.phrases.size() - 1);
-                phrase.mean = getMeanPhrase(element);
-            } else if (isTypeWord(element)) {
-                if (word.typeWords == null) {
-                    ArrayList<TypeWord> typeWords = new ArrayList<TypeWord>();
-                    typeWords.add(getTypeWord(element));
-                    word.typeWords = typeWords;
-                } else {
-                    word.typeWords.add(getTypeWord(element));
-                }
-            } else if (isTypeWord2(element)) {
-                if (word.typeWords == null) {
-                    ArrayList<TypeWord> typeWords = new ArrayList<TypeWord>();
-                    typeWords.add(getTypeWord2(element));
-                    word.typeWords = typeWords;
-                } else {
-                    word.typeWords.add(getTypeWord2(element));
-                }
-            }
-            element = element.nextElementSibling();
-        }
-
+        word.description = firstDiv.html().replaceAll("\n", "").replaceAll("href=\"javascript:void\\(0\\);\"", "");
         return word;
     }
 
-    private TypeWord getLastTypeWord(Word word) {
-        return word.typeWords.get(word.typeWords.size() - 1);
-    }
-
-    private boolean isPhrase(Element content) {
-        return content.hasClass("bold")
-                && content.hasClass("dot-blue")
-                && content.hasClass("m-top15");
-    }
-
-    private Phrase getPhrase(Element content) {
-        Phrase phrase = new Phrase();
-        phrase.phrase = content.text();
-        return phrase;
-    }
-
-    private boolean isNote(Element content) {
-        return content.hasClass("color-light-grey")
-                && content.hasClass("margin25");
-    }
-
-    private String getNote(Element content) {
-        return content.text();
-    }
-
-    private boolean isExample(Element content) {
-        return content.hasClass("color-light-blue") && content.hasClass("margin25") && content.hasClass("m-top15");
-    }
-
-    private Example getExample(Element content) {
-        Example example = new Example();
-        Elements children = content.children();
-        StringBuilder english = new StringBuilder();
-        for (Element child : children) {
-            english.append(child.text()).append(" ");
-        }
-        example.english = english.toString();
-        content = content.nextElementSibling();
-        example.vietnamese = content.text();
-        return example;
-    }
-
-    private boolean isTypeWord(Element element) {
-        return (element.hasClass("bg-grey")
-                && element.hasClass("bold") && element.hasClass("font-large")
-                && element.hasClass("m-top20"));
-
-    }
-
-    private TypeWord getTypeWord(Element content) {
-        TypeWord typeWord = new TypeWord();
-        typeWord.type = content.children().first().text();
-        return typeWord;
-    }
-
-    private boolean isTypeWord2(Element element) {
-        return !element.hasClass("margin25");
-    }
-
-    private TypeWord getTypeWord2(Element content) {
-        TypeWord typeWord = new TypeWord();
-        typeWord.type = content.text();
-        return typeWord;
-    }
-
-    private boolean isMean(Element element) {
-        return element.hasClass("green") && element.hasClass("bold") &&
-                element.hasClass("margin25") && element.hasClass("m-top15");
-    }
-
-    private Mean getMean(Element element) {
-        Mean mean = new Mean();
-        mean.mean = element.text();
-        return mean;
-    }
-
-    private boolean isPhraseMean(Element element) {
-        return element.hasClass("grey")
-                && element.hasClass("bold")
-                && element.hasClass("margin25")
-                && element.hasClass("m-top15");
-    }
-
-    private String getMeanPhrase(Element element) {
-        return element.text();
-    }
-
-    private void cloneMP3(String sk, String word, String url) throws IOException {
+    private String cloneMP3(String sk, String word, String url) throws IOException {
         URLConnection conn = new URL(url).openConnection();
         InputStream is = conn.getInputStream();
-
-        OutputStream outStream = new FileOutputStream(new File("mp3/" + sk + "/" + word + ".mp3"));
+        String mp3Name = "mp3/" + sk + "/" + word + ".mp3";
+        OutputStream outStream = new FileOutputStream(new File(mp3Name));
         byte[] buffer = new byte[4096];
         int len;
         while ((len = is.read(buffer)) > 0) {
@@ -375,6 +216,7 @@ public class Clone {
         }
         outStream.close();
         System.out.println("clone mp3 " + sk + " : " + word + " success");
+        return mp3Name;
     }
 
 

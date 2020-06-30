@@ -1,19 +1,16 @@
 package com.example.toeic.service.impl;
 
 import com.example.toeic.model.exam.Exam;
-import com.example.toeic.model.exam.GroupQuestion;
 import com.example.toeic.model.exam.Part;
 import com.example.toeic.model.exam.Question;
 import com.example.toeic.repository.*;
 import com.example.toeic.service.QuestionService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.*;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -49,16 +46,16 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void prepare() throws IOException {
+    public void prepare(Integer examId) throws IOException {
 
-        FileInputStream fis = new FileInputStream("H:/Work/Toeic/Service/exam1.txt");
+        FileInputStream fis = new FileInputStream("H:/Work/Toeic/Service/exam"+examId+".txt");
         String s = IOUtils.toString(fis, StandardCharsets.UTF_8);
 
         ObjectMapper objectMapper = new ObjectMapper();
         Exam exam = objectMapper.readValue(s, Exam.class);
 
         Exam exam1 = new Exam();
-        exam1.setName("Đề 1");
+        exam1.setName("Đề "+examId+"");
         examRepository.save(exam1);
         Part partOne = exam.parts.get(0);
         partOne.questions.forEach(question -> {
@@ -144,6 +141,27 @@ public class QuestionServiceImpl implements QuestionService {
             groupQuestion.getQuestions().forEach(question -> {
                 question.setExamId(exam1.getId());
                 question.setPartId(6);
+                question.setGroupQuestion(groupQuestion);
+//                GroupQuestion groupQuestion1 = new GroupQuestion();
+//                groupQuestion1.setId(groupQuestion.getId());
+//                question.setGroupQuestion(groupQuestion1);
+//                questionRepository.save(question);
+                question.answers.forEach(answer -> {
+                    answer.setQuestion(question);
+//                    answerRepository.save(answer);
+                });
+
+            });
+            groupQuestionRepository.save(groupQuestion);
+        });
+
+        Part partSeven = exam.parts.get(6);
+        partSeven.groupQuestions.forEach(groupQuestion -> {
+            groupQuestion.setExamId(exam1.getId());
+            groupQuestion.setPartId(7);
+            groupQuestion.getQuestions().forEach(question -> {
+                question.setExamId(exam1.getId());
+                question.setPartId(7);
                 question.setGroupQuestion(groupQuestion);
 //                GroupQuestion groupQuestion1 = new GroupQuestion();
 //                groupQuestion1.setId(groupQuestion.getId());

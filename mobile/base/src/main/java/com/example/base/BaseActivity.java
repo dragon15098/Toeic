@@ -1,17 +1,8 @@
 package com.example.base;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import butterknife.ButterKnife;
-
-public abstract class BaseActivity extends Activity implements BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
     @Override
     public void showLoading() {

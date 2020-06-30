@@ -14,4 +14,7 @@ public interface QuestionService {
     @GET("/api/question/findPartTwoByExamId/{id}")
     Single<List<Question>> findPartTwoByExamId(@Path("id") Integer examId);
 
+    @GET("/api/question/findPartFiveByExamId/{id}")
+    Single<List<Question>> findPartFiveByExamId(@Path("id") Integer examId);
+
 }

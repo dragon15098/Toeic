@@ -19,9 +19,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Clone_Exam {
-    int time = 1;
-    String laravel_session = "eyJpdiI6ImhHaTZUWWE4Vk9lU1wvK3U4aE90cnpBPT0iLCJ2YWx1ZSI6IlwvZXdyN1orTjJZTWttSUpyaUVqTXhDSVpVb0JsRzBMeTB3TzNGemVEeE9GZDF5VW1KU1pwVEtRNzdtV0pyRDNhIiwibWFjIjoiMjgzZGE2NzI1YzRlNDkzMzA4ZjcxMzZiMDI3MjU3NDg1ZTZlZjVlM2U5ZWY3MzI3YjMxNWQ4YjBiODA0Yzc2YyJ9";
-    String XSRF_TOKEN = "eyJpdiI6Ik0rcmY0QlBWV20rREJmYzY0bng4T1E9PSIsInZhbHVlIjoidytGWWVjSFZPTEQ0NEdKclgwaUlFSmtZbTlHVVlWZUJISlRnY3R0cWkrXC9xdjk3Sks4WlZXZDhkMFQ5TVJQUkYiLCJtYWMiOiJmNTM5YWJlNTEzZDYyZmRlYzMzZDFkMWNiYzYzNWFkMzBiNmNiYzBkN2VkY2NjNDQ4MjdiZGVlZDJlMmU5MDFjIn0%3D";
+    int time = 3;
+    static int index = 1;
+    String laravel_session = "eyJpdiI6Im9RMVJsb0ZTOVZBRTZJOFZ2R3JhNGc9PSIsInZhbHVlIjoiM0N0dEw0c2lJdWd5QmFVanYybzdzTm1UekltQ3lsWEx3dVJUdll3NmJ6UytGUEtRQXlvMmlEdkxtMlZDdTZWaSIsIm1hYyI6ImY4OTM2YjkyMmVmOGI4NmQ1OTdlMWY0MzhjZGJjNTUwODVhM2ExM2Q4MDUxOGZiNTI4MzUxOWQyNzgzNzg1NTUifQ%3D%3D";
+    String XSRF_TOKEN = "eyJpdiI6Inc3UCtxMXVKdzM4NlFjMDhVemhRQ2c9PSIsInZhbHVlIjoieUpMRUNFRWt3VUtMakNqUmxBUU9IeVNUVU5CcWVBWGxXODhtYnAyV3l0QktmM1FcL1VmamJkTkkwTnRKaDl3eVwvIiwibWFjIjoiNjI3Mzg0YWEwNjQ4YjM2YmEwMzJmYmNlNTAxY2QxYmMwZmYzNWZmYmEyNGIwMzAyNDJjYTliMTUxMGE0N2FmMiJ9";
 
 
     public void startClone() throws IOException {
@@ -174,7 +175,7 @@ public class Clone_Exam {
     private Part clonePartThree() throws IOException {
         Part partThree = new Part(3L, "Short conversation");
         partThree.groupQuestions = new ArrayList<>();
-        for (int index = 2; index < 12; index++) {
+        for (int index = 2; index < 15; index++) {
             cloneQuestionPartThree(partThree, index);
         }
         return partThree;
@@ -192,8 +193,18 @@ public class Clone_Exam {
         group_question.partId = 3;
         cloneExplainQuestion(group_question, document);
         cloneMp3PResource(group_question, document);
+        cloneImageResourcePart3(group_question, document);
         cloneQuestionAndAnswer(group_question, document);
         partThree.groupQuestions.add(group_question);
+    }
+
+    private void cloneImageResourcePart3(GroupQuestion groupQuestion, Document document) throws IOException {
+        Element div = document.select("div.text-center").first();
+        if (div != null) {
+            Element image = div.children().first();
+            groupQuestion.linkImageResource = saveImage(image.attributes().get("src"));
+        }
+
     }
 
     private void cloneExplainQuestion(GroupQuestion groupQuestion, Document document) {
@@ -233,7 +244,7 @@ public class Clone_Exam {
     private Part clonePartFour() throws IOException {
         Part partFour = new Part(4L, "Short talk");
         partFour.groupQuestions = new ArrayList<>();
-        for (int index = 12; index < 22; index++) {
+        for (int index = 15; index < 25; index++) {
             cloneQuestionPartFour(partFour, index);
         }
         return partFour;
@@ -251,8 +262,17 @@ public class Clone_Exam {
         group_question.partId = 4;
         cloneExplainQuestion(group_question, document);
         cloneMp3PResource(group_question, document);
+        clonrImageResourcePart4(group_question, document);
         cloneQuestionAndAnswer(group_question, document);
         partFour.groupQuestions.add(group_question);
+    }
+
+    private void clonrImageResourcePart4(GroupQuestion groupQuestion, Document document) throws IOException {
+        Element div = document.select("div.text-center").first();
+        if (div != null) {
+            Element image = div.children().first();
+            groupQuestion.linkImageResource = saveImage(image.attributes().get("src"));
+        }
     }
 
     private Part clonePartFive() throws IOException {
@@ -298,7 +318,7 @@ public class Clone_Exam {
     private Part clonePartSix() throws IOException {
         Part partSix = new Part(6L, "Text Completion");
         partSix.groupQuestions = new ArrayList<>();
-        for (int index = 22; index < 26; index++) {
+        for (int index = 25; index < 29; index++) {
             cloneQuestionPartSix(partSix, index);
         }
         return partSix;
@@ -345,20 +365,17 @@ public class Clone_Exam {
     }
 
     private void cloneParagraph(GroupQuestion groupQuestion, Document document) {
-        Element select = document.select("p.text-justify").first();
-        select = select.nextElementSibling();
-        StringBuilder paragraph = new StringBuilder();
-        while (!select.tagName().equals("form")) {
-            paragraph.append(select.text()).append("\n");
-            select = select.nextElementSibling();
-        }
-        groupQuestion.resourceParagraph = paragraph.toString();
+        Element select = document.select("div.question-content").first();
+        String s = select.html().replace("\n", "");
+        int first = s.indexOf("<hr>");
+        int last = s.indexOf("<form");
+        groupQuestion.resourceParagraph = s.substring(first, last);
     }
 
     private Part clonePartSeven() throws IOException {
         Part partSeven = new Part(7L, "Reading Comprehension");
         partSeven.groupQuestions = new ArrayList<>();
-        for (int index = 26; index < 42; index++) {
+        for (int index = 29; index < 44; index++) {
             cloneQuestionPartSeven(partSeven, index);
         }
         return partSeven;
@@ -375,8 +392,51 @@ public class Clone_Exam {
         GroupQuestion groupQuestion = new GroupQuestion();
         groupQuestion.partId = 7;
         cloneQuestionAndAnswerPartSeven(groupQuestion, document);
+        cloneImagePart7(groupQuestion, document);
         cloneParagraphPartSeven(groupQuestion, document);
         partSeven.groupQuestions.add(groupQuestion);
+    }
+
+    private void cloneImagePart7(GroupQuestion groupQuestion, Document document) throws IOException {
+        cloneFirstImage(groupQuestion, document);
+        cloneSecondImage(groupQuestion, document);
+        cloneThirdImage(groupQuestion, document);
+    }
+
+    private void cloneFirstImage(GroupQuestion groupQuestion, Document document) throws IOException {
+        if (document.select("img").size() >= 1) {
+            Element img = document.select("img").first();
+            if (img != null) {
+                if (groupQuestion.linkImageResource == null) {
+                    groupQuestion.linkImageResource = "";
+                }
+                groupQuestion.linkImageResource += saveImageType2(img.attributes().get("src")) + " , ";
+            }
+        }
+    }
+
+    private void cloneSecondImage(GroupQuestion groupQuestion, Document document) throws IOException {
+        if (document.select("img").size() >= 2) {
+            Element img = document.select("img").get(1);
+            if (img != null) {
+                if (groupQuestion.linkImageResource == null) {
+                    groupQuestion.linkImageResource = "";
+                }
+                groupQuestion.linkImageResource += saveImageType2(img.attributes().get("src")) + " , ";
+            }
+        }
+    }
+
+    private void cloneThirdImage(GroupQuestion groupQuestion, Document document) throws IOException {
+        if (document.select("img").size() >= 3) {
+            Element img = document.select("img").get(2);
+            if (img != null) {
+                if (groupQuestion.linkImageResource == null) {
+                    groupQuestion.linkImageResource = "";
+                }
+                groupQuestion.linkImageResource += saveImageType2(img.attributes().get("src")) + " , ";
+            }
+        }
     }
 
     private void cloneQuestionAndAnswerPartSeven(GroupQuestion groupQuestion, Document document) {
@@ -405,9 +465,22 @@ public class Clone_Exam {
     }
 
     private void cloneParagraphPartSeven(GroupQuestion groupQuestion, Document document) {
-        Elements childrens = document.select("div.question-content").first().children();
-        childrens.remove(childrens.size()-1);
-        groupQuestion.resourceParagraph = childrens.html();
+        Element div = document.select("div.question-content").first();
+        if (div != null) {
+            String s = div.html();
+            int first = s.indexOf("<hr>");
+            int last = s.indexOf("<form");
+            if (first != -1 && last != -1) {
+                s = s.substring(first, last);
+                int img = s.indexOf("img");
+                if (img != -1) {
+                    groupQuestion.resourceParagraph = s.substring(0, img - 5);
+                }
+                else{
+                    groupQuestion.resourceParagraph = s;
+                }
+            }
+        }
     }
 
     public String saveImage(String imageUrl) throws IOException {
@@ -425,14 +498,39 @@ public class Clone_Exam {
         FileOutputStream fos = new FileOutputStream("image_exam_" + time + "/" + imageUrl.split("/")[6]);
         fos.write(response);
         fos.close();
+        System.out.println("clone image success");
         return "image_exam_" + time + "/" + imageUrl.split("/")[6];
+    }
+
+    public String saveImageType2(String imageUrl) throws IOException {
+        String urlImage = "https://toeic24.vn" + imageUrl;
+        System.out.println(urlImage);
+        URL url = new URL(urlImage);
+        InputStream in = new BufferedInputStream(url.openStream());
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        byte[] buf = new byte[1024];
+        int n = 0;
+        while (-1 != (n = in.read(buf))) {
+            out.write(buf, 0, n);
+        }
+        out.close();
+        in.close();
+        byte[] response = out.toByteArray();
+        String newName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1).substring(0, 10) + time + index;
+        String fileName = "image_exam_" + time + "/" + newName + ".png";
+        FileOutputStream fos = new FileOutputStream(fileName);
+        fos.write(response);
+        fos.close();
+        System.out.println("clone image success");
+        index++;
+        return fileName;
     }
 
     private void writeToFile(Object obj) throws IOException {
         System.out.println("Start write to file : " + time);
         Gson gson = new Gson();
         String wordJson = gson.toJson(obj);
-        OutputStream outStream = new FileOutputStream(new File("exam" +time+ ".txt"));
+        OutputStream outStream = new FileOutputStream(new File("exam" + time + ".txt"));
         outStream.write(wordJson.getBytes());
         System.out.println("End write to file : " + time);
     }

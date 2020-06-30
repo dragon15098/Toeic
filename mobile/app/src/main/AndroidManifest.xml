@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.toeic">
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".config.ApplicationConfig"
         android:allowBackup="true"
@@ -24,13 +27,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".feature.exam.part_one.PartOneActivity" />
-        <activity android:name=".feature.exam.part_one_exam.PartOneExamActivity" />
-        <activity android:name=".feature.exam.part_two.PartTwoActivity" />
-        <activity android:name=".feature.exam.part_two_exam.PartTwoExamActivity" />
-        <activity android:name=".feature.exam.part_three.PartThreeActivity" />
-        <activity android:name=".feature.exam.part_three_exam.PartThreeExamActivity" />
-        <activity android:name=".feature.exam.part_four.PartFourActivity" />
+        <activity android:name=".feature.practice.part_one.PartOneActivity" />
+        <activity android:name=".feature.practice.part_two.PartTwoActivity" />
+        <activity android:name=".feature.practice.part_three.PartThreeActivity" />
+        <activity android:name=".feature.practice.part_four.PartFourActivity" />
+        <activity android:name=".feature.practice.part_five.PartFiveActivity" />
+        <activity android:name=".feature.practice.part_six.PartSixActivity" />
+        <activity android:name=".feature.practice.part_seven.PartSevenActivity" />
+        <activity android:name=".feature.exam.test.TestActivity" />
+        <activity android:name=".feature.practice.part_main.PartMainActivity" />
+        <activity android:name=".feature.result.ResultActivity" />
+        <activity android:name=".feature.exam.result.TestResultActivity" />
+        <activity android:name=".feature.register.RegisterActivity" />
     </application>
 
 </manifest>

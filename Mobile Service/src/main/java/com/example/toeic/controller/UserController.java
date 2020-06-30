@@ -1,11 +1,14 @@
 package com.example.toeic.controller;
 
+import com.example.toeic.model.dto.RegisterResponse;
 import com.example.toeic.model.dto.UserDTO;
+import com.example.toeic.model.exception.UserExitsException;
 import com.example.toeic.service.UserService;
 import com.example.toeic.service.impl.UserDetailsServiceImpl;
 import com.example.toeic.model.user.User;
 import com.example.toeic.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,13 +24,13 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/insert")
-    public ResponseEntity<User> insert(@Valid @RequestBody UserDTO userDTO) {
-        User user = userService.createUser(userDTO);
-        if(user!=null) {
-            return ResponseEntity.ok().build();
+    public ResponseEntity<RegisterResponse> insert(@Valid @RequestBody UserDTO userDTO) {
+        RegisterResponse registerResponse = new RegisterResponse();
+        try {
+            userService.createUser(userDTO);
+        } catch (UserExitsException e) {
+            registerResponse.setError("User exits");
         }
-        else{
-            return ResponseEntity.badRequest().build();
-        }
+        return new ResponseEntity<>(registerResponse, HttpStatus.OK);
     }
 }

@@ -9,6 +9,7 @@ import com.example.base.BaseActivity;
 import com.example.toeic.R;
 import com.example.toeic.R2;
 import com.example.toeic.feature.home.HomeActivity;
+import com.example.toeic.feature.register.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R2.id.btnLogin)
     public void onButtonClick(View view) {
         loginPresenter.onClickButtonLogin(txtUserName.getText().toString(), txtPassword.getText().toString());
+    }
+
+    @OnClick(R2.id.btnRegister)
+    public void onClickButtonRegister() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 
     @Override

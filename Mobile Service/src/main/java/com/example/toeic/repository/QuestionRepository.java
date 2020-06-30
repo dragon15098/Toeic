@@ -10,6 +10,10 @@ import java.util.List;
 
 public interface QuestionRepository extends PagingAndSortingRepository<Question, Integer>, JpaSpecificationExecutor<Question> {
     List<Question> findAllByPartId(Integer partId);
+
     List<Question> findAllByPartIdAndExamId(Integer partId, Integer examId);
+
     Page<Question> findAllByPartId(Integer partId, Pageable pageable);
+
+    List<Question> findAllByExamIdOrderById(Integer examId);
 }

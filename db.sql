@@ -1,3 +1,10 @@
+drop table if exists group_question;
+drop table if exists answer;
+drop table if exists question;
+drop table if exists exam;
+drop table if exists part;
+drop table if exists user;
+
 CREATE TABLE `toeic`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
@@ -30,9 +37,9 @@ INSERT INTO `toeic`.`part` (`id`, `name`) VALUES ('7', 'Reading Comprehension');
   CREATE TABLE `toeic`.`group_question` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `explain_answer` VARCHAR(2000),
-  `link_image_resource` VARCHAR(100) NULL,
-  `link_mp3_resource` VARCHAR(100) NULL,
-  `resource_paragraph` VARCHAR(2000) NULL,
+  `link_image_resource` VARCHAR(200) NULL,
+  `link_mp3_resource` VARCHAR(200) NULL,
+  `resource_paragraph` LONGTEXT  NULL,
   `part_id` INT NOT NULL,
    `exam_id` INT NOT NULL,
   PRIMARY KEY (`id`),

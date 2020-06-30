@@ -1,9 +1,11 @@
 package com.example.toeic.data.network;
 
+import com.example.toeic.data.model.Word;
 import com.example.toeic.data.network.api.ExamService;
 import com.example.toeic.data.network.api.GroupQuestionService;
 import com.example.toeic.data.network.api.QuestionService;
 import com.example.toeic.data.network.api.UserService;
+import com.example.toeic.data.network.api.WordService;
 
 public class Service {
     public static RxSingleSchedulers getRxSingleSchedulers() {
@@ -24,5 +26,9 @@ public class Service {
 
     public static GroupQuestionService callGroupQuestionService() {
         return HttpHelper.getClient().create(GroupQuestionService.class);
+    }
+
+    public static WordService callWordService() {
+        return HttpHelper.getClient().create(WordService.class);
     }
 }

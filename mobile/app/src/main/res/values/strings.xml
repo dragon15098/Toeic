@@ -40,6 +40,41 @@
     <string name="submit">Submit</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
+    <string name="image">Image</string>
+    <string name="finish">Finish</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 
+    <!-- RESULT -->
+    <string name="result">Result</string>
+    <string name="old_result">Old result</string>
+    <string name="current_result">Current result</string>
+    <string name="correct">Correct</string>
+    <string name="wrong">Wrong</string>
+    <string name="correct_number">Correct %1$d question </string>
+    <string name="wrong_number">Wrong %1$d question</string>
+    <string name="compare_results">Compare the results of the last exam</string>
 
+    <!-- LABEL -->
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm password</string>
+    <string name="username">Username</string>
+    <string name="search">Search</string>
+    <string name="word_not_found">Word not found</string>
+    <string name="word_mean">Word mean</string>
+
+    <!-- TIME -->
+    <string name="end_time">00:00:00</string>
+
+    <!-- TOAST -->
+    <string name="register_success">Register_success</string>
+    <string name="confirm_password_not_match">Confirm password not match</string>
+
+    <!-- MENU -->
+    <string name="do_exam">Practice part</string>
+    <string name="do_test">Do full test</string>
+    <string name="search_word">Search word</string>
+
+    <!-- EXAM -->
+    <string name="exam_list">Exam list</string>
 </resources>

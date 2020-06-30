@@ -14,4 +14,8 @@ public class Word {
     private String word;
     private String uk;
     private String us;
+    private String description;
+    private String ukMp3;
+    private String usMp3;
+
 }

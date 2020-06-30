@@ -8,10 +8,10 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpHelper {
-//    public static String SERVICE_URL = "http://169.254.83.117:8080";
+    //    public static String SERVICE_URL = "http://169.254.83.117:8080";
 //    public static String SERVICE_RESOURCE = "http://169.254.83.117:8080/api/file/";
-    public static String SERVICE_URL = "http://192.168.128.140:8080";
-    public static String SERVICE_RESOURCE = "http://192.168.128.140:8080/api/file/";
+    public static String SERVICE_URL = "http://192.168.128.58:8080";
+    public static String SERVICE_RESOURCE = "http://192.168.128.58:8080/api/file/";
     private static Retrofit retrofit;
     private static String token = "";
 

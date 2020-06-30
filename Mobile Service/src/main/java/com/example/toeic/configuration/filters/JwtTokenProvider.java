@@ -32,7 +32,7 @@ public class JwtTokenProvider {
 
     public boolean notContainsToken(HttpServletRequest request) {
         String authorizationHeader = getAuthorizationHeader(request);
-        return authorizationHeader == null || !authorizationHeader.startsWith(authenticationHeaderConfiguration.getPrefix());
+        return authorizationHeader == null || !authorizationHeader.startsWith(authenticationHeaderConfiguration.getPrefix()) || authorizationHeader.equals("Bearer");
     }
 
     public String getSubject(HttpServletRequest request) {

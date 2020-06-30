@@ -53,9 +53,9 @@ public class QuestionController {
         return ResponseEntity.ok(questionService.findByPartAndExams(Part.PartIndex.PART_FIVE.getValue(), examId));
     }
 
-    @GetMapping("/prepare")
-    public void prepare() throws IOException {
-        questionService.prepare();
+    @GetMapping("/prepare/{id}")
+    public void prepare(@PathVariable("id") Integer examId) throws IOException {
+        questionService.prepare(examId);
     }
 
 }

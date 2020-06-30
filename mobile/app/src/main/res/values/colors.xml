@@ -4,6 +4,15 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="gray">#AFAFAF</color>
-    <color name="correctAnswer">#00574B</color>
+    <color name="correctAnswer">#00FF55</color>
     <color name="black">#000</color>
+    <color name="wrong">#FF8C8C</color>
+    <color name="correct">#9AFF8E</color>
+
+
+    <!-- Light UI colors -->
+    <color name="lt_yellow">#fce18a</color>
+    <color name="lt_orange">#ff726d</color>
+    <color name="lt_purple">#b48def</color>
+    <color name="lt_pink">#f4306d</color>
 </resources>

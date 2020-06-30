@@ -15,4 +15,10 @@ public interface GroupQuestionService {
 
     @GET("/api/group_question/findPartFourByExamId/{id}")
     Single<List<GroupQuestion>> findPartFourByExamId(@Path("id") Integer examId);
+
+    @GET("/api/group_question/findPartSixByExamId/{id}")
+    Single<List<GroupQuestion>> findPartSixByExamId(@Path("id") Integer examId);
+
+    @GET("/api/group_question/findPartSevenByExamId/{id}")
+    Single<List<GroupQuestion>> findPartSevenByExamId(@Path("id") Integer examId);
 }

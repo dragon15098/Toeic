@@ -68,4 +68,16 @@ dependencies {
 
     // html view
     implementation 'org.sufficientlysecure:html-textview:3.9'
+
+    // animation result
+    implementation 'nl.dionsegijn:konfetti:1.2.0'
+
+    //chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    //toast
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+
+    //search view
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.5'
 }

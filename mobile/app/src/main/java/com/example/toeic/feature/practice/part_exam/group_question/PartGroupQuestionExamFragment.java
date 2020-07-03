@@ -134,8 +134,8 @@ public abstract class PartGroupQuestionExamFragment extends BaseFragment impleme
     }
 
     protected void hideButton() {
-        backQuestion.setVisibility(View.VISIBLE);
-        submitButton.setVisibility(View.VISIBLE);
+        backQuestion.setVisibility(View.INVISIBLE);
+        submitButton.setVisibility(View.INVISIBLE);
     }
 
     private void clearFirstButtonGroup() {

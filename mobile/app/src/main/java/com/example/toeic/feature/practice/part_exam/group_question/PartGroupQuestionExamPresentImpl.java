@@ -14,11 +14,10 @@ import java.util.Map;
 public abstract class PartGroupQuestionExamPresentImpl extends BasePresenterImpl implements PartGroupQuestionExamPresent {
     public PartGroupQuestionExamView partGroupQuestionExamView;
     public List<GroupQuestion> groupQuestions;
-    public List<Integer> answers = new ArrayList<>();
 
-    private int currentGroupQuestionIndex = 0;
+    protected int currentGroupQuestionIndex = 0;
 
-    private boolean submitted = false;
+    protected boolean submitted = false;
 
     private int totalCorrectAnswer = 0;
     private int totalWrongAnswer = 0;
@@ -52,6 +51,11 @@ public abstract class PartGroupQuestionExamPresentImpl extends BasePresenterImpl
 
     @Override
     public void nextQuestion() {
+        if (!submitted) {
+            checkFirstQuestion(null);
+            checkSecondQuestion(null);
+            checkThirdQuestion(null);
+        }
         submitted = false;
         if (isLastQuestion()) {
             ((PartGroupQuestionExamView) view).endPart();
@@ -61,7 +65,7 @@ public abstract class PartGroupQuestionExamPresentImpl extends BasePresenterImpl
         }
     }
 
-    private boolean isLastQuestion() {
+    protected boolean isLastQuestion() {
         return currentGroupQuestionIndex + 1 == groupQuestions.size();
     }
 

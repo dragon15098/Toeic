@@ -21,7 +21,6 @@ import com.example.toeic.data.model.Answer;
 import com.example.toeic.data.model.Question;
 import com.example.toeic.feature.exam.test.TestActivity;
 import com.example.toeic.feature.practice.part_exam.group_question.PartGroupQuestionExamFragment;
-import com.example.toeic.feature.practice.part_six_exam.PartSixExamPresent;
 
 import java.util.List;
 
@@ -43,8 +42,8 @@ public class PartSevenExamFragment extends PartGroupQuestionExamFragment impleme
     @BindView(R2.id.secondImage)
     ImageView secondImage;
 
-    @BindView(R2.id.thridImage)
-    ImageView thridImage;
+    @BindView(R2.id.thirdImage)
+    ImageView thirdImage;
 
     @BindView(R2.id.slightFour)
     public View slightFour;
@@ -97,6 +96,7 @@ public class PartSevenExamFragment extends PartGroupQuestionExamFragment impleme
         ButterKnife.bind(this, view);
         getData();
         setUpPresent();
+        hideButtonWhenTesting();
         return view;
     }
 
@@ -328,16 +328,16 @@ public class PartSevenExamFragment extends PartGroupQuestionExamFragment impleme
                 if (urlImages.length >= 3) {
                     String urlImage = urlImages[2].trim();
                     if (!urlImage.equals("")) {
-                        thridImage.setVisibility(View.VISIBLE);
+                        thirdImage.setVisibility(View.VISIBLE);
                         Glide.with(activity.getBaseContext())
                                 .load(SERVICE_RESOURCE + urlImage)
-                                .into(thridImage);
+                                .into(thirdImage);
                     }
                 } else {
-                    thridImage.setVisibility(View.GONE);
+                    thirdImage.setVisibility(View.GONE);
                 }
             } else {
-                thridImage.setVisibility(View.GONE);
+                thirdImage.setVisibility(View.GONE);
             }
         }
 

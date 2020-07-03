@@ -4,6 +4,7 @@ import com.example.toeic.data.model.GroupQuestion;
 import com.example.toeic.data.model.Question;
 import com.example.toeic.data.network.Service;
 import com.example.toeic.feature.practice.part_exam.group_question.PartGroupQuestionExamPresentImpl;
+import com.example.toeic.feature.practice.part_exam.group_question.PartGroupQuestionExamView;
 
 import java.util.List;
 
@@ -31,6 +32,30 @@ public class PartSevenExamPresentImpl extends PartGroupQuestionExamPresentImpl i
     @Override
     public String getParagraph() {
         return getCurrentGroupQuestionIndex().getResourceParagraph();
+    }
+
+    @Override
+    public void nextQuestion() {
+        if (!submitted) {
+            checkFirstQuestion(null);
+            checkSecondQuestion(null);
+            if (getThirdQuestion() != null) {
+                checkThirdQuestion(null);
+            }
+            if (getFourthQuestion() != null) {
+                checkFourthQuestion(null);
+            }
+            if (getFifthQuestion() != null) {
+                checkFifthQuestion(null);
+            }
+        }
+        submitted = false;
+        if (isLastQuestion()) {
+            ((PartGroupQuestionExamView) view).endPart();
+        } else {
+            currentGroupQuestionIndex++;
+            partGroupQuestionExamView.notifyView();
+        }
     }
 
     @Override

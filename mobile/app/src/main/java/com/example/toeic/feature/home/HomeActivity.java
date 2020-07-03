@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.toeic.R;
 import com.example.toeic.feature.exam.exam_list.ExamFragment;
-import com.example.toeic.feature.practice.part_list.PartFragment;
+import com.example.toeic.feature.practice.part_list.PartListFragment;
 import com.example.toeic.feature.search_word.SearchWordFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void changePartFragment() {
-        changeFragment(new PartFragment());
+        changeFragment(new PartListFragment());
     }
 
     private void changeExamsFragment() {
